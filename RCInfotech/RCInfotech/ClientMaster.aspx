@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="NewGrid.aspx.cs" Inherits="NewGrid" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ClientMaster.aspx.cs" Inherits="NewGrid" %>
 
 <!DOCTYPE html>
 
@@ -61,11 +61,32 @@
             border-top-right-radius: 3px;
             font-size: x-large;
             color: #0000FF;
-            width: 966px;
+            width: 1004px;
+            text-align: center;
         }
         .auto-style7 {
             width: 569px;
             text-align: left;
+        }
+        .auto-style8 {
+            font-size: large;
+        }
+        .auto-style9 {
+            font-weight: bold;
+        }
+        .auto-style10 {
+            font-size: medium;
+            font-weight: normal;
+        }
+        .auto-style11 {
+            font-weight: normal;
+        }
+        .auto-style12 {
+            font-weight: bold;
+            height: 36px;
+        }
+        .auto-style13 {
+            height: 36px;
         }
     </style>
     <script language="javascript" type="text/javascript">
@@ -112,7 +133,7 @@ else
   <form id="form1" runat="server"  >
       <div class="container" style="width: 785px; height: 889px; text-align: center;">
        
-        <asp:Panel ID="Panel2" runat="server" BackColor="#CCCCCC" class="panel panel-default">
+        <asp:Panel ID="Panel2" runat="server" BackColor="#CCCCCC" class="panel panel-default" style="margin-right: 56px">
        
       
 
@@ -128,46 +149,44 @@ else
              OnClick="Tab3_Click" class="btn btn-primary"/>
           <asp:MultiView ID="MainView" runat="server">
             <asp:View ID="View1" runat="server">
-              <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+              <table >
                 <tr>
                   <td>
                     
                       <table style="width: 783px" class="table table-hover" align="center" >
                           <tr>
-                              <td>
-                                  <h3 class="auto-style2"><b>ClientId:</b></h3>
+                              <td class="auto-style9">
+                                  <h3 class="auto-style10">ClientId:</h3>
                               </td>
                               <td>
                                   <asp:TextBox ID="txtClientId" runat="server" class="form-control"  Height="30px" Width="250px" ReadOnly="True" CssClass="form-control"></asp:TextBox></td>
                           </tr>
                           <tr>
-                              <td>
-                                  <h3 class="auto-style2"><b>Client Name:</b></h3>
+                              <td class="auto-style9">
+                                  <h3 class="auto-style10">Client Name:</h3>
                               </td>
-                              <td>
-                                  <asp:TextBox ID="txtCl_Name" runat="server" class="form-control"  Height="30px" Width="250px" CssClass="form-control" CausesValidation="True" style="text-transform:uppercase;"></asp:TextBox></td> <%--onkeypress ="checkNum();"--%>
-                               <td>
+                              <td colspan="2">
+                                  <asp:TextBox ID="txtCl_Name" runat="server" class="form-control"  Height="30px" Width="250px" CssClass="form-control" CausesValidation="True" style="text-transform:uppercase;"></asp:TextBox> <%--onkeypress ="checkNum();"--%>
                                                           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red"
-                                                              ErrorMessage="Name is requied" ValidationGroup="g1" Text="*" ControlToValidate="txtCl_Name" EnableClientScript="false"></asp:RequiredFieldValidator></td>
-                                                      <td>
-                                                          <asp:RegularExpressionValidator ID="RegularExpressionValidator" runat="server" ForeColor="Red"
-                                                              ErrorMessage="Please enter only characters" Text="*" ValidationGroup="g1" SetFocusOnError="true" ControlToValidate="txtCl_Name" ValidationExpression="^[A-Za-z]*$" EnableClientScript="false"></asp:RegularExpressionValidator></td>
+                                                              ErrorMessage="Name is requied" ValidationGroup="g1" Text="*" Display="Dynamic" ControlToValidate="txtCl_Name" EnableClientScript="false" CssClass="auto-style8"></asp:RequiredFieldValidator>
+                                              
+                                                          <asp:RegularExpressionValidator ID="RegularExpressionValidator" runat="server" ForeColor="Red" Display="Dynamic"
+                                                              ErrorMessage="Please enter only characters" Text="*" ValidationGroup="g1" SetFocusOnError="true" ControlToValidate="txtCl_Name" ValidationExpression="^[A-Za-z]*$" EnableClientScript="false" CssClass="auto-style8"></asp:RegularExpressionValidator></td>
                           </tr>
                           <tr>
-                              <td>
-                                  <h3 class="auto-style2"><b>Address:</b></h3>
+                              <td class="auto-style12">
+                                  <h3 class="auto-style10">Address:</h3>
                               </td>
-                              <td>
-                                  <asp:TextBox ID="txtAddress" runat="server" class="form-control"  Height="30px" Width="250px" CssClass="form-control"  style="text-transform:uppercase;"></asp:TextBox></td>
-                              <td>
-                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Address is required" ForeColor="Red"  ValidationGroup="g1" Text="*" ControlToValidate="txtAddress" EnableClientScript="false"></asp:RequiredFieldValidator></td>
+                              <td class="auto-style13">
+                                  <asp:TextBox ID="txtAddress" runat="server" class="form-control"  Height="30px" Width="250px" CssClass="form-control"  style="text-transform:uppercase;"></asp:TextBox>       
+                                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Address is required" ForeColor="Red" Display="Dynamic"  ValidationGroup="g1" Text="*" ControlToValidate="txtAddress" EnableClientScript="false" CssClass="auto-style8"></asp:RequiredFieldValidator></td>
                                                             <%-- <td>
                                                           <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ForeColor="Red"
                                                               ErrorMessage="characters" ValidationGroup="g1" Text="*" ControlToValidate="txtAddress" ValidationExpression="^[A-Za-z]*$" EnableClientScript="false"></asp:RegularExpressionValidator></td>--%>
                           </tr>
                           <tr>
-                              <td>
-                                  <h3 class="auto-style2"><strong>Installation</strong><b> Date:</b></h3>
+                              <td class="auto-style9">
+                                  <h3 class="auto-style2"><strong><span class="auto-style11">Installation</span></strong><b><span class="auto-style11"> Date:</span></b></h3>
                               </td>
                               <td>  
                                   <asp:Calendar ID="Calendar1" runat="server" OnSelectionChanged="Calendar1_SelectionChanged" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px">
@@ -184,16 +203,13 @@ else
                                    <br />
                                   
                                    <asp:TextBox ID="txtCont_Person" runat="server" class="form-control"  Height="30px" Width="250px" ReadOnly="True"></asp:TextBox>
-                                      </td>
-                             
-                               <td>
-                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red"
-                                                              ErrorMessage="Date requied"  ValidationGroup="g1" Text="*" ControlToValidate="txtCont_Person" EnableClientScript="false"></asp:RequiredFieldValidator></td>                                                
+                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red" Display="Dynamic"
+                                                              ErrorMessage="Date requied"  ValidationGroup="g1" Text="*" ControlToValidate="txtCont_Person" EnableClientScript="false" CssClass="auto-style8"></asp:RequiredFieldValidator></td>                                                
                           </tr>                       
                           <tr>
                               <td colspan="3">
                                                           <asp:ValidationSummary ID="ValidationSummary1" runat="server" HeaderText="Please enter valid details" ForeColor="Red"
-                                                              Font-Italic="true" Font-Underline="true" ValidationGroup="g1" EnableClientScript="false"/>
+                                                              Font-Italic="true" Font-Underline="true" ValidationGroup="g1" EnableClientScript="false" Display="Dynamic"/>
                                                       </td>
                           </tr>
                           <tr>
@@ -235,7 +251,7 @@ else
                                                       </td>
                                                       <td class="auto-style7"> 
                                                           <asp:DropDownList ID="dropName" AppendDataBoundItems="true" runat="server" AutoPostBack="true" CssClass="dropdown" Height="30px" OnSelectedIndexChanged="dropName_SelectedIndexChanged" Width="250px">
-                                                           <asp:ListItem Text="Select Client" Value="1" />
+                                                           <asp:ListItem Text="Select" Value="1" />
                                                           
                                                           </asp:DropDownList>
                                                       </td>
@@ -251,9 +267,8 @@ else
                                                           <h3 class="auto-style2"><b>Address:</b></h3>
                                                       </td>
                                                       <td class="auto-style5">
-                                                          <asp:TextBox ID="TextBox3" runat="server" class="form-control"  Height="30px" Width="250px" CssClass="form-control"></asp:TextBox></td>
-                                                      <td>
-                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ForeColor="Red"
+                                                          <asp:TextBox ID="TextBox3" runat="server" class="form-control"  Height="30px" Width="250px" CssClass="form-control"></asp:TextBox>
+                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator5" Display="Dynamic" runat="server" ForeColor="Red"
                                                               ErrorMessage="Address is requied" Text="*" SetFocusOnError="true" ValidationGroup="g2" ControlToValidate="TextBox3" EnableClientScript="false"></asp:RequiredFieldValidator></td>
                                                       <%--<td>
                                                           <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ForeColor="Red"
@@ -276,14 +291,28 @@ else
                                                               <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
                                                               <WeekendDayStyle BackColor="#CCCCFF" />
                                                           </asp:Calendar>
-                                                      </td>
-                                                      <td>
-                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ForeColor="Red"
+                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ForeColor="Red" Display="Dynamic"
                                                               ErrorMessage="Installation date is requied" Text="*" SetFocusOnError="true" ValidationGroup="g2" ControlToValidate="TextBox4" EnableClientScript="false"></asp:RequiredFieldValidator></td>
-                                                      <td>
+                                                     
                                                           <%--<asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ForeColor="Red"
                                                               ErrorMessage="characters" Text="*" ValidationGroup="g2" ControlToValidate="TextBox4" ValidationExpression="^[A-Za-z]*$" EnableClientScript="false"></asp:RegularExpressionValidator></td>
                                                   --%></tr>
+                                
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="Label2" runat="server" Text="Contact Person"></asp:Label></td>
+                                    <td class="text-left">
+                                        <asp:DropDownList ID="dropUpdatePerson" AppendDataBoundItems="true" runat="server" CssClass="dropdown" Height="30px"  Width="250px" AutoPostBack="true" OnSelectedIndexChanged="dropUpdatePerson_SelectedIndexChanged">
+                                             <asp:ListItem Text="Select" Value="1" />
+                                        </asp:DropDownList></td>
+                                </tr>
+                                <tr>
+
+                                    <td>
+                                        <asp:Label ID="Label1" runat="server" Text="Contact No" ></asp:Label></td>
+                                    <td class="text-left">
+                                        <asp:TextBox ID="txtUpdateNo" runat="server"  Height="30px" Width="250px" CssClass="form-control"></asp:TextBox>
+                                </tr>
                                                   <%--<tr>
                                                       <td>
                                                           <h3><b>Contact Number:</b></h3>
@@ -296,7 +325,7 @@ else
                                                   </tr>--%>
                                                   <tr>
                                                       <td colspan="3">
-                                                          <asp:ValidationSummary ID="ValidationSummary2" runat="server" HeaderText="Please enter valid details" ForeColor="Red"
+                                                          <asp:ValidationSummary ID="ValidationSummary2" runat="server" HeaderText="Please enter valid details" ForeColor="Red" Display="Dynamic"
                                                               Font-Italic="true" ValidationGroup="g2" Font-Underline="true" EnableClientScript="false" />
                                                       </td>
                                                   </tr>
@@ -318,7 +347,7 @@ else
               <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid" >
                 <tr>
                   <td>
-                    &nbsp;<table style="width: 783px" class="table table-hover">
+                    &nbsp;<table  class="table table-hover">
                                                   <tr>
                                                       <td class="auto-style1">
                                                           <h3 class="auto-style2"><b>ClientId:</b></h3>
@@ -369,9 +398,8 @@ else
                                                       </td>
                                                       <td>
                                                           <asp:TextBox ID="txtContPers3" runat="server" Width="244px" CssClass="form-control" style="text-transform:uppercase;"></asp:TextBox>
-                                                      </td>
-                                                      <td>
-                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidatorV7" runat="server" ForeColor="Red"
+                                                    
+                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidatorV7" runat="server" ForeColor="Red" Display="Dynamic"
                                                               ErrorMessage="Name is requied" Text="*" SetFocusOnError="true" ValidationGroup="g3" ControlToValidate="txtContPers3"></asp:RequiredFieldValidator></td>
                                                       <%--<td>
                                                           <asp:RegularExpressionValidator ID="RegularExpressionValidatorV5" runat="server" ForeColor="Red"
@@ -383,9 +411,8 @@ else
                                                       </td>
                                                       <td>
                                                           <asp:TextBox ID="txtContNo3" runat="server" Width="244px" MaxLength="13" CssClass="form-control" onkeypress="CheckNumeric(event);" ></asp:TextBox>
-                                                      </td>
-                                                      <td>
-                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidatorV8" runat="server" ForeColor="Red"
+                                                     
+                                                          <asp:RequiredFieldValidator ID="RequiredFieldValidatorV8" runat="server" ForeColor="Red" Display="Dynamic"
                                                               ErrorMessage="Mobile Number is requied" SetFocusOnError="true" ValidationGroup="g3" Text="*" ControlToValidate="txtContNo3" EnableClientScript="false"></asp:RequiredFieldValidator></td>
                                                   </tr>
                                                   <tr>
@@ -396,6 +423,7 @@ else
                                                   </tr>
                                                   <tr>
                                                       <td colspan="2">
+                                                          <%--<asp:Button ID="btnContUpdate" ValidationGroup="g3" runat="server" Text="Update" CssClass="btn" OnClick="Button1_Click"/>--%>
                                                           <asp:Button ID="Btn_AddPerson" ValidationGroup="g3" runat="server" Text="Save" OnClick="Btn_AddPerson_Click" CssClass="btn" />
                                                           &nbsp;<asp:Button ID="btnCancel3" ValidationGroup="g3" runat="server" Text="Cancel" class="btn btn-primary btn-lg" OnClick="btnCancel3_Click" CssClass="btn"></asp:Button>
                                                           <asp:Label ID="lblAddContact" runat="server" OnLoad="Page_Load" CssClass="label label-success"></asp:Label>

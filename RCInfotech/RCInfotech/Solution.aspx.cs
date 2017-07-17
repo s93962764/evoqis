@@ -128,6 +128,13 @@ public partial class Solution : System.Web.UI.Page
                 Label3.ForeColor = System.Drawing.Color.Red;
                 Label3.Text = "Please select Client Name";
             }
+            if ("Select" == Drop_status.SelectedItem.ToString())
+            {
+                Label3.ForeColor = System.Drawing.Color.Red;
+                Label3.Text = "Please select status";
+
+            }
+
             else
             {
                 Label3.Text = "Information is Updated..!";
@@ -143,6 +150,9 @@ public partial class Solution : System.Web.UI.Page
                                 txtSolvedBy.Text="";
                                     txtSlTime.Text="";
                                     txtSlDate.Text = "";
+                                    drop_ClName.Text = "Select";
+                                    drop_ClPerson.Text = "Select";
+                                    Drop_status.Text = "Select";
                 //btnUpdate.Visible = false;
                 //txtCl_id2.Text = "";
                 //TextBox3.Text = "";
@@ -153,7 +163,7 @@ public partial class Solution : System.Web.UI.Page
         }
         else
         {
-            Label3.Text = "Information isNot Saved";
+            Label3.Text = "Information is Not Saved";
         }
     }
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)

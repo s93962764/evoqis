@@ -55,7 +55,7 @@ public partial class Problems_Solutions : System.Web.UI.Page
        
        // date = txtDate.Text;
         //DateTime dt = txtDate.Text;
-        Calendar1.Visible = false;
+        Calendar1.Visible = false;    
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -81,6 +81,12 @@ public partial class Problems_Solutions : System.Web.UI.Page
                   Label4.ForeColor = System.Drawing.Color.Red;
                   Label4.Text = "Please select Client and contact person";
               }
+              if ("Select" == DropPr_type.SelectedItem.ToString())
+              {
+                  Label4.ForeColor = System.Drawing.Color.Red;
+                  Label4.Text = "Please select Problem type";
+
+              }
               else
               {
                   if (rowAffected > 0)
@@ -96,6 +102,10 @@ public partial class Problems_Solutions : System.Web.UI.Page
                       txtRecvBy.Text = "";
                       txtContact.Text = "";
                       txtProblem.Text = "";
+                      Drop_NamePers.Text = "Select";
+                      dropPerson.Text = "Select";
+                      DropPr_type.Text = "Select";
+                     
                       this.Page_Load(sender, e);
                       con.Close();
                   }

@@ -22,7 +22,7 @@ public partial class NewGrid : System.Web.UI.Page
 {
     string cs;
     SqlConnection con,con1;
-    SqlCommand cmd;
+    SqlCommand cmd,cmd2;
     DataSet ds = new DataSet();
     int cl_id = 1;
     bool flag = false;
@@ -85,10 +85,17 @@ public partial class NewGrid : System.Web.UI.Page
     //dropName.SelectedIndex = dropName.Items.IndexOf(dropName.Items.FindByValue("Select"));
     con = new SqlConnection("Data Source=162.222.225.88;Initial Catalog=rcipune2017;user Id=rcinfotech;password=Rci@1234");
     cmd = new SqlCommand("select cl_id,cl_name from rc_master", con);
+    cmd2 = new SqlCommand("select Contact_Person from [Cl_Contact]", con);
     con.Open();
     dropName.DataSource = cmd.ExecuteReader();
     dropName.DataTextField = "cl_name";
     dropName.DataBind();
+    con.Close();
+    con.Open();
+    dropUpdatePerson.DataSource = cmd2.ExecuteReader();
+   // dropUpdateNo.DataTextField = "Contact_Person";
+    dropUpdatePerson.DataValueField = "Contact_Person";
+    dropUpdatePerson.DataBind();
     con.Close();
   }
   protected void Tab3_Click(object sender, EventArgs e)
@@ -128,6 +135,7 @@ public partial class NewGrid : System.Web.UI.Page
           txtCont_Person.Text = "";
           Calendar1.Visible = true;
           txtCl_Name.Focus();
+         
       }
       else
       {
@@ -189,6 +197,7 @@ public partial class NewGrid : System.Web.UI.Page
                           txtCl_Name.Enabled = false;
                           txtAddress.Enabled = false;
                           txtCont_Person.Enabled = false;
+                         
                           //txtmobile.Enabled = false;
                           con.Close();
                         
@@ -199,7 +208,7 @@ public partial class NewGrid : System.Web.UI.Page
                       lblAddClient.ForeColor = System.Drawing.Color.Red;
                       lblAddClient.Text = "Sorry Data could not be saved.";
                       //this.ActiveControl = txtCl_Name;
-
+                   
                       txtCl_Name.Focus();
                   }
               }
@@ -207,12 +216,12 @@ public partial class NewGrid : System.Web.UI.Page
           else
           {
               lblAddClient.Text = "Sorry Data could not be saved.";
+             
           }
           txtClientId.Text = "";
           txtCl_Name.Text = "";
           txtAddress.Text = "";
-          txtCont_Person.Text = "";
-
+          txtCont_Person.Text = "";     
           txtClientId.Enabled = true;
           txtCl_Name.Enabled = true;
           txtAddress.Enabled = true;
@@ -220,6 +229,7 @@ public partial class NewGrid : System.Web.UI.Page
           Calendar1.Visible = true;
           this.Page_Load(sender, e);
           btnAdd1.Enabled = true;
+          lblAddClient.Text = "";
       }
       con1.Close();
       con.Close();
@@ -229,7 +239,7 @@ public partial class NewGrid : System.Web.UI.Page
   {
      // Label2.Text = "Selected ";
 
-      SqlCommand cmddrop;
+      SqlCommand cmddrop,cmdUpdateNo;
       cmddrop = new SqlCommand("select * from rc_master where cl_name= '" + dropName.SelectedValue + "'", con);
       SqlDataReader readerdrop = null;
       con.Open();
@@ -242,6 +252,7 @@ public partial class NewGrid : System.Web.UI.Page
         // TextBox5.Text = (readerdrop[5].ToString());
           con.Close();
       }
+      
   }
   protected void btnUpdate_Click(object sender, EventArgs e)
   {
@@ -253,8 +264,6 @@ public partial class NewGrid : System.Web.UI.Page
               //SqlConnection con = new SqlConnection(con);
               try
               {
-
-                  
                       con.Open();
                       string qry1 = "UPDATE rc_master SET cl_address=@cl_address,cl_JoinDate=@cl_contPerson where cl_id=" + txtCl_id2.Text;
                       SqlCommand cmdUpdate = new SqlCommand(qry1, con);
@@ -264,35 +273,47 @@ public partial class NewGrid : System.Web.UI.Page
                       cmdUpdate.Parameters.AddWithValue("@cl_contPerson", TextBox4.Text);
                       //mdUpdate.Parameters.AddWithValue("@cl_ContNo", TextBox5.Text);
                       cmdUpdate.ExecuteNonQuery();
-
-                      if ("Select Client" == dropName.SelectedItem.ToString())
+                      con.Close();
+                      con.Open();
+                      string qryNo = "UPDATE cl_contact SET Contact_No=@Contact_No where cl_id=" + txtCl_id2.Text;
+                      SqlCommand cmdUpdateNo = new SqlCommand(qryNo, con);
+                      cmdUpdateNo.Parameters.AddWithValue("@Contact_No", txtUpdateNo.Text);
+                      cmdUpdateNo.ExecuteNonQuery();
+                      con.Close();
+                      if ("Select" == dropName.SelectedItem.ToString())
                       {
                           lblAddContact.ForeColor = System.Drawing.Color.Red;
                           lblAddContact.Text = "Please select Client Name";
+                         
                       }
                       else
                       {
                           lblUpdateClient.Text = "Information is Updated..!";
-                          btnUpdate.Visible = false;
+                          btnUpdate.Visible = false;                        
                           txtCl_id2.Text = "";
                           TextBox3.Text = "";
                           TextBox4.Text = "";
+                          txtUpdateNo.Text = "";
                           this.Page_Load(sender, e);
                           btnUpdate.Visible = true;
+                          dropName.Text = "Select";
+                          dropUpdatePerson.Text = "Select";
                       }
               }
               catch (NullReferenceException ex)
               {
                   lblUpdateClient.ForeColor = System.Drawing.Color.Red;
                   lblUpdateClient.Text = "Sorry. Data could not be saved.";
+                 
               }
       }
       else
       {
           lblUpdateClient.Text = "Information is not Updated..!";
+         
       }
   }
-    
+
   protected void btnDelete_Click(object sender, EventArgs e)
   {
       if (Page.IsValid)
@@ -307,11 +328,13 @@ public partial class NewGrid : System.Web.UI.Page
           TextBox3.Text = "";
           TextBox4.Text = "";
           this.Page_Load(sender, e);
+
           btnDelete.Visible = true;
       }
       else
       {
           lblUpdateClient.Text = "Information is not Deleted";
+
       }
   }
   protected void Btn_AddPerson_Click(object sender, EventArgs e)
@@ -330,6 +353,7 @@ public partial class NewGrid : System.Web.UI.Page
                       {
                           lblAddContact.ForeColor = System.Drawing.Color.Red;
                           lblAddContact.Text = "Please select Client Name";
+                         
                       }
                       else
                       {
@@ -338,19 +362,23 @@ public partial class NewGrid : System.Web.UI.Page
                               lblAddClient.ForeColor = System.Drawing.Color.Blue;
                               lblAddContact.Text = "Client Information is saved..!";
                               txtCl_Id3.Enabled = false;
-
+                              
                               con.Close();
 
 
                               Btn_AddPerson.Visible = false;
+                              txtCl_Id3.Text="";
+                              txtAddress3.Text="";
                               txtContPers3.Text = "";
                               txtContNo3.Text = "";
                               this.Page_Load(sender, e);
                               Btn_AddPerson.Visible = true;
+                            
                           }
                           else
                           {
                               lblAddContact.Text = "Contact Number is Already Exits";
+                            
                           }
                       }
               }
@@ -358,12 +386,14 @@ public partial class NewGrid : System.Web.UI.Page
               {
                   lblAddContact.ForeColor = System.Drawing.Color.Red;
                   lblAddContact.Text = "Sorry Information could not be saved.";
+               
               }
               catch (SqlException ex)
               {
                   if (ex.Number == 2627)
                   {
                       lblAddContact.Text = "Mobile number is already exits..!";//Violation of primary key. Handle Exception
+                     
                   }
               }
              
@@ -371,6 +401,7 @@ public partial class NewGrid : System.Web.UI.Page
       }
       else {
           lblAddContact.Text = "Sorry Information could not be saved.";
+           
       }
       }
   
@@ -446,6 +477,66 @@ public partial class NewGrid : System.Web.UI.Page
       TextBox4.Text = Calendar2.SelectedDate.ToShortDateString();
       Calendar2.Visible = false;
   }
-  
+
+
+
+  //protected void Button1_Click(object sender, EventArgs e)
+  //{
+  //    if (Page.IsValid)
+  //    {
+  //        con = new SqlConnection("Data Source=162.222.225.88;Initial Catalog=rcipune2017;user Id=rcinfotech;password=Rci@1234");        
+  //        try
+  //        {
+  //            con.Open();
+  //            string qry1 = "UPDATE [Cl_Contact] SET Contact_No=@Contact_No,Contact_Person=@Contact_Person where cl_id=" + txtCl_Id3.Text;
+  //            SqlCommand cmdUpdate = new SqlCommand(qry1, con);
+  //            // cmdUpdate.Parameters.AddWithValue("@cl_id", txtClientId.Text);
+  //            //cmdUpdate.Parameters.AddWithValue("@cl_name", txtCl_Name.Text);
+  //            cmdUpdate.Parameters.AddWithValue("@Contact_No", txtContPers3.Text);
+  //            cmdUpdate.Parameters.AddWithValue("@Contact_Person", txtContNo3.Text);
+  //            //mdUpdate.Parameters.AddWithValue("@cl_ContNo", TextBox5.Text);
+  //            cmdUpdate.ExecuteNonQuery();
+
+  //            if ("Select Client" == Drop_NamePers.SelectedItem.ToString())
+  //            {
+  //                lblAddContact.ForeColor = System.Drawing.Color.Red;
+  //                lblAddContact.Text = "Please select Client Name";
+  //            }
+  //            else
+  //            {
+  //                lblAddContact.Text = "Information is Updated..!";
+  //                btnUpdate.Visible = false;
+  //                txtCl_id2.Text = "";
+  //                TextBox3.Text = "";
+  //                TextBox4.Text = "";
+  //                this.Page_Load(sender, e);
+  //                btnContUpdate.Visible = true;
+  //            }
+  //        }
+  //        catch (NullReferenceException ex)
+  //        {
+  //            lblAddContact.ForeColor = System.Drawing.Color.Red;
+  //            lblAddContact.Text = "Sorry. Data could not be saved.";
+  //        }
+  //    }
+  //    else
+  //    {
+  //        lblAddContact.Text = "Information is not Updated..!";
+  //    }
+
+  //}
+  protected void dropUpdatePerson_SelectedIndexChanged(object sender, EventArgs e)
+  {
+      SqlCommand cmdUpdateNo;
+      cmdUpdateNo = new SqlCommand("select Contact_No from cl_contact where Contact_Person='" + dropUpdatePerson.SelectedValue + "'", con);
+      SqlDataReader readerdropUpdateNo = null;
+      con.Open();
+      readerdropUpdateNo = cmdUpdateNo.ExecuteReader();
+      if (readerdropUpdateNo.Read())
+      {
+          txtUpdateNo.Text = (readerdropUpdateNo[0].ToString());
+          con.Close();
+      }
+  }
 }
 

@@ -36,7 +36,11 @@
             text-align: left;
         }
     </style>
-
+    <script type="text/javascript">
+        function setHeight(txtSolution) {
+            txtSolution.style.height = txtSolution.scrollHeight + "px";
+        }
+</script>
 </head>
 <body>
     <form id="form1" runat="server" class="form-inline">
@@ -53,7 +57,7 @@
                      <asp:Label ID="Label11" runat="server" Text="Client ID"></asp:Label>
                  </td>
                  <td class="text-left">
-                     <asp:TextBox ID="txtPrCl_Id" runat="server" Height="30px" Width="250px" ReadOnly="True"></asp:TextBox></td>
+                     <asp:TextBox ID="txtPrCl_Id" runat="server" Height="30px" Width="250px" ReadOnly="True" style="text-align: left"></asp:TextBox></td>
              </tr>
                 <tr>
                     <td class="text-left"><asp:Label ID="Label9" runat="server" Text="Client Name"></asp:Label></td>
@@ -90,17 +94,22 @@
              <tr>
                  <td class="auto-style3">
                      <asp:Label ID="Label2" runat="server" Text="Solution"></asp:Label></td>
-                  <td class="auto-style7"> <asp:TextBox ID="txtSolution" runat="server" TextMode="MultiLine"  Height="30px" Width="250px" style="text-transform:uppercase;"></asp:TextBox></td>
+                  <td class="auto-style7"> <asp:TextBox ID="txtSolution" onkeyup="setHeight(this);" onkeydown="setHeight(this);" runat="server" TextMode="MultiLine"  Height="30px" Width="250px" style="text-transform:uppercase;"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red"
+                   ErrorMessage="Solution is requied" SetFocusOnError="true" Text="*" Display="Dynamic" ControlToValidate="txtSolution" EnableClientScript="false" style="font-weight: 700; font-size: x-large"></asp:RequiredFieldValidator></td>
              </tr>   
              <tr>
                  <td class="auto-style3">
                      <asp:Label ID="Label6" runat="server" Text="Solved By"></asp:Label></td>
-                  <td class="auto-style7"> <asp:TextBox ID="txtSolvedBy" runat="server"  Height="30px" Width="250px" style="text-transform:uppercase;"></asp:TextBox></td>
+                  <td class="auto-style7"> <asp:TextBox ID="txtSolvedBy" runat="server"  Height="30px" Width="250px" style="text-transform:uppercase;"></asp:TextBox>
+                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ForeColor="Red"
+                       ErrorMessage="Solved by is requied" SetFocusOnError="true" Text="*" Display="Dynamic" ControlToValidate="txtSolvedBy" EnableClientScript="false" style="font-size: x-large"></asp:RequiredFieldValidator></td>
              </tr> 
              <tr>
                  <td class="auto-style3">
                      <asp:Label ID="Label7" runat="server" Text="Status"></asp:Label></td>
                  <td class="auto-style7"> <asp:DropDownList ID="Drop_status" runat="server"  Height="34px" Width="137px" AutoPostBack="true">
+                       <asp:ListItem Text="Select" Value="1" />
                  <asp:ListItem>Close</asp:ListItem>
                  <asp:ListItem>Pending</asp:ListItem>
                  <asp:ListItem>Half Pending</asp:ListItem>
@@ -123,6 +132,12 @@
             <WeekendDayStyle BackColor="#CCCCFF" />
         </asp:Calendar></td>
              </tr>
+             <tr>
+               <td colspan="3">
+                 <asp:ValidationSummary ID="ValidationSummary2" runat="server" HeaderText="Please enter valid details" ForeColor="Red"
+                Font-Italic="true"  Font-Underline="true" EnableClientScript="false" />
+              </td>
+               </tr>
              <tr>
                  <td class="auto-style3"> <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" CssClass="btn " /></td>
                    <td class="auto-style1"> <asp:Button ID="btnCancel" runat="server" Text="Cancel" CssClass="btn " /></td>

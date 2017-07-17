@@ -54,6 +54,11 @@
             text-align: left;
         }
     </style>
+    <script type="text/javascript">
+        function setHeight(txtProblem) {
+            txtProblem.style.height = txtProblem.scrollHeight + "px";
+        }
+</script>
 </head><!--/head-->
 
 <body>
@@ -63,7 +68,7 @@
             <div class="panel-heading"> <span class="auto-style4" style="font-size: x-large; color: #0000FF">Client Problems</span></div>
             <table class="table table-hover">
                 <tr>
-                    <td><asp:Calendar ID="Calendar1" runat="server"  style="text-align: center" Width="220px" OnSelectionChanged="Calendar1_SelectionChanged" Visible="False" VisibleDate="2017-06-23" Height="200px" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399">
+                    <td><asp:Calendar ID="Calendar1" runat="server"  style="text-align: center" Width="220px" OnSelectionChanged="Calendar1_SelectionChanged" VisibleDate="2017-06-23" Height="200px" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399">
                     <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
                     <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
                     <OtherMonthDayStyle ForeColor="#999999" />
@@ -123,6 +128,7 @@
                    <td class="auto-style1">
                        <asp:Label ID="Label5" runat="server" Text="Problem Type"></asp:Label></td>
                    <td class="auto-style1"><asp:DropDownList ID="DropPr_type" runat="server" Height="34px" Width="250PX" AutoPostBack="true" CssClass="dropdown">
+                       <asp:ListItem Text="Select" Value="1" />
                          <asp:ListItem>Pending Problem</asp:ListItem>
                          <asp:ListItem>Solved Problem</asp:ListItem>
                          <asp:ListItem>Technical Problem</asp:ListItem>
@@ -131,14 +137,14 @@
                </tr>
                 <tr>
                     <td class="auto-style1"><asp:Label ID="Label3" runat="server" Text="Problem Statment" Height="30px" Width="97px"></asp:Label></td>
-                    <td class="auto-style1">   <asp:TextBox ID="txtProblem" runat="server" TextMode="MultiLine" CssClass="form-control" Height="30PX" Width="250PX"  style="text-transform:uppercase;"></asp:TextBox></td>
+                    <td class="auto-style1">   <asp:TextBox ID="txtProblem" runat="server" TextMode="MultiLine" CssClass="form-control" Height="30PX" Width="250PX" onkeyup="setHeight(this);" onkeydown="setHeight(this);" style="text-transform:uppercase;"></asp:TextBox></td>
                     <td> <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ForeColor="Red" SetFocusOnError="true"  AutoPostBack="false"
                      ErrorMessage="Problem Statement is requied" ValidationGroup="g1" Text="*" ControlToValidate="txtProblem" EnableClientScript="false"  ClientIDMode="Static"></asp:RequiredFieldValidator>   
                 </tr>
                    <tr>
                        <td>    <asp:Button ID="btnSubmit" runat="server" ValidationGroup="g1" Text="Save" OnClick="btnSubmit_Click" Height="30px" Width="97px" CssClass="btn" />
                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Height="30px" Width="97px" CssClass="btn" OnClick="btnCancel_Click" /></td>
-                       <td>  <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label></td>
+                       <td>  <asp:Label ID="Label4" runat="server"></asp:Label></td>
                    </tr>   
                 <tr>
                               <td colspan="3">
