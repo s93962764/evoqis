@@ -25,10 +25,20 @@
     
 <body style="font-weight: 700">
 
+
     <form id="form1" runat="server">
+        <div class="container" style="width: 785px; height: 889px; text-align: center;">
+       
+        <asp:Panel ID="Panel2" runat="server" BackColor="#CCCCCC" class="panel panel-default" Height="128px" Width="905px">
+       
+ 
+            <br />
+            <br />
+       
  
     <asp:DropDownList ID="ddClientNames" runat="server" CssClass="btn btn-primary" OnSelectedIndexChanged="ddClientNames_SelectedIndexChanged" Width="208px" Height="36px">
                     </asp:DropDownList>
+
                     <asp:Button ID="btnDisplayAll" runat="server" OnClick="btnDisplayAll_Click" Text="DISPLAYALL" CssClass="btn btn-info" Height="32px" />
                     <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click"  Text="SHOW" CssClass="btn btn-info" Height="32px" Width="129px" />
 
@@ -37,30 +47,24 @@
         <br />
         <br />
 
-
-
-
- 
       
                     
         
-                <br />
-
-
-
-
  
+      
+                      </asp:Panel>
+
       
                     
         
-                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" />
+                <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="true" ToolPanelView="None" />
 
 
 
 
  
       
-                    
+        </div>
         
                 </form>
        

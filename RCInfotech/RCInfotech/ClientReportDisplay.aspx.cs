@@ -29,7 +29,7 @@ public partial class ClientReportDisplay : System.Web.UI.Page
             con.Close();
 
         }
-      
+     
     }
     public void CrystallReportBind()
     {
