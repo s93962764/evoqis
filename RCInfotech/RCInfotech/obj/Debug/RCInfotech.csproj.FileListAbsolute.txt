@@ -1,8 +1,0 @@
-c:\users\rcinfo-06\documents\visual studio 2012\Projects\RCInfotech\RCInfotech\bin\RCInfotech.dll
-c:\users\rcinfo-06\documents\visual studio 2012\Projects\RCInfotech\RCInfotech\bin\RCInfotech.pdb
-c:\users\rcinfo-06\documents\visual studio 2012\Projects\RCInfotech\RCInfotech\obj\Debug\RCInfotech.dll
-c:\users\rcinfo-06\documents\visual studio 2012\Projects\RCInfotech\RCInfotech\obj\Debug\RCInfotech.pdb
-C:\Users\RCINFO-06\documents\visual studio 2012\Projects\RCInfotech\RCInfotech\obj\Debug\RCInfotech.csprojResolveAssemblyReference.cache
-C:\Users\RCINFOTECH\Documents\Visual Studio 2012\Projects\RCInfotech\RCInfotech\obj\Debug\RCInfotech.csprojResolveAssemblyReference.cache
-C:\Users\RCINFOTECH\Documents\Visual Studio 2012\Projects\RCInfotech\RCInfotech\obj\Debug\RCInfotech.dll
-C:\Users\RCINFOTECH\Documents\Visual Studio 2012\Projects\RCInfotech\RCInfotech\obj\Debug\RCInfotech.pdb
